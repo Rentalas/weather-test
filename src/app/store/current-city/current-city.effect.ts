@@ -31,8 +31,6 @@ export class CurrentCityWeatherEffects {
         setCurrentCityWeatherSuccess({ currentCityWeather })
       ),
       tap(({ currentCityWeather }) => {
-        console.log('sddd');
-
         this.store.dispatch(
           getCurrentCityFiveDayDailyWeather({
             cityId: currentCityWeather.cityId,

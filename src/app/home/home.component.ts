@@ -61,16 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.setCurrentCity()
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((city) => {
-        if (!city.currentCityWeather) {
-          return;
-        }
-
-        // this.getFiveDay(
-        //   city.currentCityWeather.cityId,
-        //   city.currentCityWeather.temperatureIndicator
-        // );
-      });
+      .subscribe();
     this.store
       .select(selectCurrentCityFiveDayDailyWeather)
       .pipe(takeUntil(this.unsubscribe$))
@@ -111,16 +102,4 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.store.dispatch(setLoading({ isLoading: true }));
     this.store.dispatch(getCurrentCityWeather());
   }
-
-  // private getFiveDay(
-  //   id: string,
-  //   temperatureIndicator: TemperatureIndicator
-  // ): void {
-  //   this.store.dispatch(
-  //     getCurrentCityFiveDayDailyWeather({
-  //       cityId: id,
-  //       temperatureIndicator,
-  //     })
-  //   );
-  // }
 }

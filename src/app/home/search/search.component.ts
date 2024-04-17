@@ -1,5 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   OnInit,
@@ -47,7 +48,7 @@ import { setLoading } from '../../store/ui/ui.actions';
   styleUrl: './search.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild(MatAutocompleteTrigger) trigger: MatAutocompleteTrigger;
 
   searchControl = new FormControl('');

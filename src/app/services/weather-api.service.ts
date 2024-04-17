@@ -1,11 +1,9 @@
-import { Injectable, inject } from '@angular/core';
-import { Observable, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { kyivWeather } from '../temp/weather-data';
-import { fiveDay } from '../temp/rsp5';
-import { DailyWeatherModel } from '../models/daily-weather.model copy';
+import { Injectable, inject } from '@angular/core';
+import { Observable, map } from 'rxjs';
 import { FiveDayDailyWeatherRs } from '../abstractions';
 import { TemperatureIndicator } from '../constants';
+import { DailyWeatherModel } from '../models/daily-weather.model copy';
 
 @Injectable({
   providedIn: 'root',

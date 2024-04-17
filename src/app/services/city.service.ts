@@ -1,10 +1,10 @@
-import { Injectable, InjectionToken, inject } from '@angular/core';
-import { CityModel } from '../models/city.model';
-import { Observable, Subject, catchError, map, of, switchMap, tap } from 'rxjs';
-import { CityApiService } from './city-api.service';
+import { Injectable, inject } from '@angular/core';
+import { Observable, Subject, catchError, map, of, switchMap } from 'rxjs';
 import { City, CityWeather, Position } from '../abstractions';
-import { isNullish } from '../utilities/common.utility';
 import { CITY_KYIV, NAVIGATOR } from '../constants';
+import { CityModel } from '../models/city.model';
+import { isNullish } from '../utilities/common.utility';
+import { CityApiService } from './city-api.service';
 import { WeatherService } from './weather.service';
 
 @Injectable({

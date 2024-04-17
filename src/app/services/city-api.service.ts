@@ -1,11 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, map, of, tap } from 'rxjs';
-import { CityModel } from '../models/city.model';
-import { kyivByPosition } from '../temp/kyivbypos';
+import { Observable, map } from 'rxjs';
 import { City, CityRs } from '../abstractions';
-import { api } from '../temp/rsp';
-import { MOCK_DATA } from '../temp/rst2';
+import { CityModel } from '../models/city.model';
 
 @Injectable({
   providedIn: 'root',

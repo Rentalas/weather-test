@@ -1,11 +1,11 @@
-import { Injectable, OnInit, inject } from '@angular/core';
-import { City, CityWeather, DailyWeather } from '../abstractions';
-import { Observable, forkJoin, map, take, combineLatest, tap, of } from 'rxjs';
-import { WeatherApiService } from './weather-api.service';
+import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectTemperatureIndicator } from '../store/temperature-indicator/temperature-indicator.selector';
+import { Observable, combineLatest, forkJoin, map, of, take } from 'rxjs';
+import { City, DailyWeather } from '../abstractions';
 import { TemperatureIndicator } from '../constants';
 import { CityWeatherModel } from '../models/city-weather.model';
+import { selectTemperatureIndicator } from '../store/temperature-indicator/temperature-indicator.selector';
+import { WeatherApiService } from './weather-api.service';
 
 @Injectable({
   providedIn: 'root',
