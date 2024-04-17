@@ -1,0 +1,13 @@
+<div class="header-container">
+  <div class="logo">
+    <button mat-button color="accent" routerLink="">Weather</button>
+  </div>
+  <div class="button-container">
+    <nav>
+      <button mat-button color="accent" routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</button>
+      <button mat-button color="accent" routerLink="favorites" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Favorites</button>
+    </nav>
+    <app-theme-toggle></app-theme-toggle>
+    <app-temperature-select></app-temperature-select>
+  </div>
+</div>

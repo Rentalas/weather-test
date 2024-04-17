@@ -1,0 +1,16 @@
+<form class="form">
+  <mat-form-field class="search-bar" appearance="fill" subscriptSizing="dynamic">
+    <mat-label>Search</mat-label>
+    <input type="text" required
+           placeholder="Pick one"
+           matInput
+           [formControl]="searchControl"
+           [matAutocomplete]="auto"
+    >
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event.option.value)">
+        @for (option of filteredOptions | async; track option) {
+          <mat-option [value]="option.name">{{option.name}}</mat-option>
+        }
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

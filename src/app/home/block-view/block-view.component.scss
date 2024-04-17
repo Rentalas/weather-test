@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.city {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 10px;
+  min-width: 150px;
+  width: max-content;
+}
+

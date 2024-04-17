@@ -1,0 +1,12 @@
+@if(!isLoading()) {
+  <div class="container">
+    @for (favoriteCityWeather of favoriteCitiesWeather | async; track favoriteCityWeather.cityId) {
+      <app-city-view [cityWeather]="favoriteCityWeather"></app-city-view>
+    }
+  </div>
+}
+@if(isLoading()) {
+  <div class="spiner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+}

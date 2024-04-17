@@ -1,0 +1,18 @@
+@if(cityWeather()) {
+  <div class="city" >
+    <h2 class="city-name">{{cityWeather()?.name}}</h2>
+    <p class="temperature">{{cityWeather()?.temperature + cityWeather()?.temperatureIndicator}}</p>
+    <p class="weather-text">{{cityWeather()?.weatherText}}</p>
+    <img [src]="iconLink()" [alt]="cityWeather()?.weatherText">
+    <div>
+      <button mat-icon-button [matTooltip]="favoriteIconTooltip()" (click)="onFavoriteButtonClick()">
+        <mat-icon color="warn">{{favoriteIcon()}}</mat-icon>
+      </button>
+      @if(isFavoriteRoute()) {
+        <button mat-icon-button matTooltip="See Detail" (click)="onDetailButtonClick(cityWeather())">
+          <mat-icon color="accent">info</mat-icon>
+        </button>
+      }
+    </div>
+  </div>
+}

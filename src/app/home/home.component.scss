@@ -1,0 +1,32 @@
+.current-city {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  app-search {
+    width: 100%;
+  }
+}
+
+.change-view-buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .change-view-button {
+    margin: 10px;
+    border-radius: 10px;
+  }
+}
+
+.spiner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,13 @@
+<mat-form-field class="temperature-form-field" appearance="fill" subscriptSizing="dynamic">
+  <select
+    matNativeControl
+    required
+    class="temperature-select"
+    [(ngModel)]="temperatureIndicator"
+    (change)="selectTemperatureIndicator()"
+  >
+    @for(temperatureIndicator of temperatureIndicators; track temperatureIndicator) {
+      <option [value]="temperatureIndicator">{{temperatureIndicator}}</option>
+    }
+  </select>
+</mat-form-field>

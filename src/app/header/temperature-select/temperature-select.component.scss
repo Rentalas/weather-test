@@ -1,0 +1,17 @@
+.temperature-form-field {
+  width: 80px;
+
+  .temperature-select {
+    color: #ffd740;
+  }
+
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent;
+  }
+
+  ::ng-deep .mat-mdc-form-field-infix::after {
+    --mat-form-field-enabled-select-arrow-color: #ffd740;
+  }
+}
+
+

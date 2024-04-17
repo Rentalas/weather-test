@@ -1,0 +1,38 @@
+@if(!isLoading()) {
+<div>
+  <div class="search-bar-container">
+    <app-search></app-search>
+  </div>
+  @if (currentCityWeather()) {
+    <div class="current-city">
+      <app-city-view [cityWeather]="currentCityWeather()"></app-city-view>
+    </div>
+  }
+
+  <div class="change-view-buttons-container">
+    <button class="change-view-button" mat-flat-button color="primary" (click)="setView('block')">Block View</button>
+    <button class="change-view-button" mat-flat-button color="primary" (click)="setView('chart')">Chart View</button>
+  </div>
+  @switch(fiveDayView()) {
+    @case ('block') {
+      <app-block-view [currentCityFiveDayDailyWeather]="currentCityFiveDayDailyWeather()"></app-block-view>
+
+    }
+    @case ('chart') {
+      <div class="chart">
+        <app-chart [currentCityFiveDayDailyWeather]="currentCityFiveDayDailyWeather()"></app-chart>
+      </div>
+    }
+    @default {
+      <div>Some Problem</div>
+    }
+  }
+</div>
+}
+@if(isLoading()) {
+  <div class="spiner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+}
+
+
