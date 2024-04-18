@@ -1,3 +1,4 @@
+import { City } from '../abstractions';
 import { TemperatureIndicator } from '../constants';
 
 export class CityWeatherModel {
@@ -9,8 +10,8 @@ export class CityWeatherModel {
   weatherText: string;
 
   constructor(
-    data: any,
-    city: any,
+    data: Record<string, any>,
+    city: City,
     public temperatureIndicator: TemperatureIndicator,
     temperature: number
   ) {

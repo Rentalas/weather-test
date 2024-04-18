@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TemperatureIndicator } from './constants';
+import { TemperatureIndicator } from '../constants';
 
 @Injectable({
   providedIn: 'root',

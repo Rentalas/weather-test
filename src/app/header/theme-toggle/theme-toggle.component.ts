@@ -6,7 +6,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { ThemeService } from '../../theme.service';
+import { ThemeService } from '../../services/theme.service';
 import { MatIconModule } from '@angular/material/icon';
 import { Theme, ThemeToggleIcon } from '../../constants';
 import { changeTheme } from '../../store/theme/theme.actions';
@@ -41,7 +41,7 @@ export class ThemeToggleComponent implements OnInit, OnDestroy {
 
   toggleTheme(): void {
     this.theme = this.changeTheme();
-    this.store.dispatch(changeTheme({ newValue: this.theme }));
+    this.store.dispatch(changeTheme({ theme: this.theme }));
     this.themeService.toggleTheme(this.theme);
   }
 

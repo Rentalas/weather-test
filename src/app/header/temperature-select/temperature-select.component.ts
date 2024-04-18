@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { TemperatureService } from '../../temperature.service';
+import { TemperatureService } from '../../services/temperature.service';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import { TemperatureIndicator } from '../../constants';
@@ -54,7 +54,7 @@ export class TemperatureSelectComponent implements OnInit, OnDestroy {
 
   selectTemperatureIndicator(): void {
     this.store.dispatch(
-      changeTemperatureIndicator({ newValue: this.temperatureIndicator })
+      changeTemperatureIndicator({ temperatureIndicator: this.temperatureIndicator })
     );
 
     this.temperatureService.setTemperatureIndicator(this.temperatureIndicator);

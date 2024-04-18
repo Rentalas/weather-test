@@ -4,8 +4,8 @@ import { createReducer, on } from '@ngrx/store';
 
 export const themeReducer = createReducer(
   initialThemeState,
-  on(changeTheme, (state, action) => ({
+  on(changeTheme, (state, { theme }) => ({
     ...state,
-    theme: action.newValue,
+    theme,
   }))
 );

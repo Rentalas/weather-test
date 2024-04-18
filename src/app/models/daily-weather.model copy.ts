@@ -10,7 +10,10 @@ export class DailyWeatherModel {
   nightWeatherText: string;
   temperatureIndicator: TemperatureIndicator;
 
-  constructor(data: any, temperatureIndicator: TemperatureIndicator) {
+  constructor(
+    data: Record<string, any>,
+    temperatureIndicator: TemperatureIndicator
+  ) {
     this.date = data.Date.split('T')[0] || 'Unknown';
     this.temperatureMinimum = data.Temperature.Minimum.Value || 0;
     this.temperatureMaximum = data.Temperature.Maximum.Value || 0;

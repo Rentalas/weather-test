@@ -52,7 +52,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild(MatAutocompleteTrigger) trigger: MatAutocompleteTrigger;
 
   searchControl = new FormControl('');
-  currentCityId: any;
   options!: City[];
   filteredOptions!: Observable<any>;
 
@@ -81,7 +80,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onOptionSelected(cityName: any) {
+  onOptionSelected(cityName: string) {
     const city = this.options.find((city) => city.name === cityName);
 
     const currentCity = new CityModel(city.name, city.cityId);

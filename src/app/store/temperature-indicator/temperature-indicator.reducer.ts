@@ -5,8 +5,8 @@ import { createReducer, on } from '@ngrx/store';
 
 export const temperatureIndicatorReducer = createReducer(
   initialTemperatureIndicatorState,
-  on(changeTemperatureIndicator, (state, action) => ({
+  on(changeTemperatureIndicator, (state, { temperatureIndicator }) => ({
     ...state,
-    temperatureIndicator: action.newValue,
+    temperatureIndicator,
   }))
 );

@@ -36,14 +36,14 @@ export class WeatherService {
     return this.store.select(selectTemperatureIndicator).pipe(take(1));
   }
 
-  private getTemperature(data: any, indicator: TemperatureIndicator): number {
+  private getTemperature(data: Record<string,any>, indicator: TemperatureIndicator): number {
     return indicator === TemperatureIndicator.celsius
       ? data?.at(0)?.Temperature?.Metric?.Value
       : data?.at(0)?.Temperature?.Imperial?.Value;
   }
 
   private createCityWeatherModels(
-    responses: any[],
+    responses: Record<string,any>[],
     cities: City[],
     temperatureIndicator: TemperatureIndicator
   ): CityWeatherModel[] {

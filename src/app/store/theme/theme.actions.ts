@@ -3,5 +3,5 @@ import { Theme } from '../../constants';
 
 export const changeTheme = createAction(
   '[Theme] Change Theme',
-  props<{ newValue: Theme }>()
+  props<{ theme: Theme }>()
 );

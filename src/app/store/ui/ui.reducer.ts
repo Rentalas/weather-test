@@ -6,6 +6,6 @@ export const uiReducer = createReducer(
   initialState,
   on(setLoading, (state, { isLoading }) => ({
     ...state,
-    isLoading: isLoading,
+    isLoading,
   }))
 );
