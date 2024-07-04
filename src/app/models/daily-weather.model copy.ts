@@ -1,4 +1,3 @@
-import { TemperatureIndicator } from '../constants';
 
 export class DailyWeatherModel {
   date: string;
@@ -8,12 +7,8 @@ export class DailyWeatherModel {
   nightWeatherIcon: number;
   dayWeatherText: string;
   nightWeatherText: string;
-  temperatureIndicator: TemperatureIndicator;
 
-  constructor(
-    data: Record<string, any>,
-    temperatureIndicator: TemperatureIndicator
-  ) {
+  constructor(data: Record<string, any>) {
     this.date = data.Date.split('T')[0] || 'Unknown';
     this.temperatureMinimum = data.Temperature.Minimum.Value || 0;
     this.temperatureMaximum = data.Temperature.Maximum.Value || 0;
@@ -21,7 +16,5 @@ export class DailyWeatherModel {
     this.nightWeatherIcon = data.Night.Icon || 0;
     this.dayWeatherText = data.Day.IconPhrase || 'Unknown';
     this.nightWeatherText = data.Night.IconPhrase || 'Unknown';
-    this.temperatureIndicator =
-      temperatureIndicator || TemperatureIndicator.celsius;
   }
 }

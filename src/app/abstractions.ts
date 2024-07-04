@@ -1,11 +1,15 @@
-import { TemperatureIndicator } from './constants';
-
 export interface CurrentWeather {
   temperature: number;
   isDayTime: boolean;
   weatherIcon: number;
   weatherText: string;
-  temperatureIndicator?: string;
+}
+
+export interface CurrentWeatherForRender {
+  temperature: string;
+  isDayTime: boolean;
+  weatherIcon: number;
+  weatherText: string;
 }
 
 export interface City {
@@ -30,10 +34,21 @@ export interface DailyWeather {
   nightWeatherIcon: number;
   dayWeatherText: string;
   nightWeatherText: string;
-  temperatureIndicator: TemperatureIndicator;
+}
+
+export interface DailyWeatherForRender {
+  date: string;
+  temperatureMinimum: string;
+  temperatureMaximum: string;
+  dayWeatherIcon: number;
+  nightWeatherIcon: number;
+  dayWeatherText: string;
+  nightWeatherText: string;
 }
 
 export type CityWeather = CurrentWeather & City;
+
+export type CityWeatherForRender = CurrentWeatherForRender & City;
 
 export type Environment = {
   apiKey: string | null;

@@ -12,16 +12,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil, tap } from 'rxjs';
 import { CityViewComponent } from '../city-view/city-view.component';
-import { TemperatureIndicator } from '../constants';
 import {
-  getCurrentCityFiveDayDailyWeather,
   getCurrentCityWeather,
   getCurrentCityWeatherSuccess,
 } from '../store/current-city/current-city.actions';
 import {
-  selectCurrentCityFiveDayDailyWeather,
-  selectCurrentCityWeatherState,
-} from '../store/current-city/current-city.selector';
+  selectCurrentCityFiveDayDailyWeatherWithIndicator,
+  selectCurrentCityWeatherWithIndicator,
+} from '../store/store.select';
 import { setLoading } from '../store/ui/ui.actions';
 import { selectIsLoading } from '../store/ui/ui.selector';
 import { BlockViewComponent } from './block-view/block-view.component';
@@ -59,11 +57,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((isLoading) => this.isLoading.set(isLoading));
 
-    this.setCurrentCity()
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe();
+    this.setCurrentCity().pipe(takeUntil(this.unsubscribe$)).subscribe();
     this.store
-      .select(selectCurrentCityFiveDayDailyWeather)
+      .select(selectCurrentCityFiveDayDailyWeatherWithIndicator)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((fiveDayDailyWeather) => {
         this.currentCityFiveDayDailyWeather.set(fiveDayDailyWeather);
@@ -87,12 +83,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private setCurrentCity(): Observable<any> {
-    return this.store.select(selectCurrentCityWeatherState).pipe(
-      tap(({ currentCityWeather }) => {
+    return this.store.select(selectCurrentCityWeatherWithIndicator).pipe(
+      tap((currentCityWeather) => {
+        console.log('1', currentCityWeather);
+
         if (currentCityWeather) return;
+        console.log('2', currentCityWeather);
+
         this.getCurrentCity();
       }),
-      tap(({ currentCityWeather }) => {
+      tap((currentCityWeather) => {
+        console.log(3);
+
         this.currentCityWeather.set(currentCityWeather);
       })
     );

@@ -1,7 +1,7 @@
 @if(cityWeather()) {
   <div class="city" >
     <h2 class="city-name">{{cityWeather()?.name}}</h2>
-    <p class="temperature">{{cityWeather()?.temperature + cityWeather()?.temperatureIndicator}}</p>
+    <p class="temperature">{{cityWeather()?.temperature}}</p>
     <p class="weather-text">{{cityWeather()?.weatherText}}</p>
     <img [src]="iconLink()" [alt]="cityWeather()?.weatherText">
     <div>

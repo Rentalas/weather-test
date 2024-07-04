@@ -4,11 +4,11 @@
     <div class="city">
       <h2 class="city-date">{{dailyWeather.date}}</h2>
       <h3>Day</h3>
-      <p class="temperature">{{dailyWeather.temperatureMaximum + dailyWeather.temperatureIndicator}}</p>
+      <p class="temperature">{{dailyWeather.temperatureMaximum}}</p>
       <p class="weather-text">{{dailyWeather.dayWeatherText}}</p>
       <img [src]="setIconLink(dailyWeather.dayWeatherIcon)" [alt]="dailyWeather.dayWeatherText">
       <h3>Night</h3>
-      <p class="temperature">{{dailyWeather.temperatureMinimum + dailyWeather.temperatureIndicator}}</p>
+      <p class="temperature">{{dailyWeather.temperatureMinimum}}</p>
       <p class="weather-text">{{dailyWeather.dayWeatherText}}</p>
       <img [src]="setIconLink(dailyWeather.nightWeatherIcon)" [alt]="dailyWeather.nightWeatherText">
     </div>

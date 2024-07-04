@@ -13,16 +13,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { take, tap } from 'rxjs';
-import { CityWeather } from '../abstractions';
+import { CityWeatherForRender } from '../abstractions';
 import {
   FavoriteIcon,
-  FavoriteIconTooltip,
-  TemperatureIndicator,
+  FavoriteIconTooltip
 } from '../constants';
 import { CityModel } from '../models/city.model';
 import {
   getCurrentCityFiveDayDailyWeather,
-  getCurrentCityWeatherSuccess,
+  setCurrentCityWeather
 } from '../store/current-city/current-city.actions';
 import {
   addToFavoriteCities,
@@ -39,7 +38,7 @@ import { selectFavoriteCities } from '../store/favorite-cities/favorite-cities.s
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CityViewComponent implements OnInit {
-  cityWeather = input.required<CityWeather>();
+  cityWeather = input.required<CityWeatherForRender>();
   isFavorite = signal(false);
   iconLink = signal('');
   favoriteIcon = signal(FavoriteIcon.notInFavorite);
@@ -76,15 +75,11 @@ export class CityViewComponent implements OnInit {
     this.addToFavorite();
   }
 
-  onDetailButtonClick(cityWeather: CityWeather): void {
-    this.store.dispatch(
-      getCurrentCityWeatherSuccess({ currentCityWeather: cityWeather })
-    );
+  onDetailButtonClick(cityWeather: CityWeatherForRender): void {
+    this.store.dispatch(setCurrentCityWeather({ city: cityWeather }));
     this.store.dispatch(
       getCurrentCityFiveDayDailyWeather({
         cityId: cityWeather.cityId,
-        temperatureIndicator:
-          cityWeather.temperatureIndicator as TemperatureIndicator,
       })
     );
     this.router.navigate(['']);

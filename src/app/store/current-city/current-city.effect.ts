@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap, take, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { WeatherService } from '../../services/weather.service';
 
 import { Store } from '@ngrx/store';
@@ -14,7 +14,6 @@ import {
   setCurrentCityWeather,
   setCurrentCityWeatherSuccess,
 } from './current-city.actions';
-import { TemperatureIndicator } from '../../constants';
 
 @Injectable()
 export class CurrentCityWeatherEffects {
@@ -34,8 +33,6 @@ export class CurrentCityWeatherEffects {
         this.store.dispatch(
           getCurrentCityFiveDayDailyWeather({
             cityId: currentCityWeather.cityId,
-            temperatureIndicator:
-              currentCityWeather.temperatureIndicator as TemperatureIndicator,
           })
         );
       }),
@@ -54,8 +51,6 @@ export class CurrentCityWeatherEffects {
         this.store.dispatch(
           getCurrentCityFiveDayDailyWeather({
             cityId: currentCityWeather.cityId,
-            temperatureIndicator:
-              currentCityWeather.temperatureIndicator as TemperatureIndicator,
           })
         );
       }),
@@ -66,11 +61,8 @@ export class CurrentCityWeatherEffects {
   getCurrentCityFiveDayDailyWeather$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getCurrentCityFiveDayDailyWeather),
-      switchMap(({ cityId, temperatureIndicator }) => {
-        return this.weatherService.getFiveDayDailyWeather(
-          cityId,
-          temperatureIndicator
-        );
+      switchMap(({ cityId }) => {
+        return this.weatherService.getFiveDayDailyWeather(cityId);
       }),
       map((currentCityFiveDayDailyWeather) =>
         getCurrentCityFiveDayDailyWeatherSuccess({

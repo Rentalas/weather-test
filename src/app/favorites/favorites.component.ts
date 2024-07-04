@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,17 +7,14 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { Observable, Subject, takeUntil, tap } from 'rxjs';
-import { CityWeather } from '../abstractions';
-import { Store } from '@ngrx/store';
-import { fetchFavoriteCitiesWeather } from '../store/favorite-cities/favorite-cities.actions';
-import {
-  selectFavoriteCities,
-  selectFavoriteCitiesWeather,
-} from '../store/favorite-cities/favorite-cities.selector';
-import { AsyncPipe } from '@angular/common';
-import { CityViewComponent } from '../city-view/city-view.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Store } from '@ngrx/store';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { CityWeatherForRender } from '../abstractions';
+import { CityViewComponent } from '../city-view/city-view.component';
+import { fetchFavoriteCitiesWeather } from '../store/favorite-cities/favorite-cities.actions';
+import { selectFavoriteCities } from '../store/favorite-cities/favorite-cities.selector';
+import { selectFavoriteCitiesWithIndicator } from '../store/store.select';
 import { setLoading } from '../store/ui/ui.actions';
 import { selectIsLoading } from '../store/ui/ui.selector';
 
@@ -29,12 +27,12 @@ import { selectIsLoading } from '../store/ui/ui.selector';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FavoritesComponent implements OnInit, OnDestroy {
-  favoriteCitiesWeather: Observable<CityWeather[]>;
+  favoriteCitiesWeather: Observable<CityWeatherForRender[]>;
   isLoading = signal(false);
 
   private store = inject(Store);
   private unsubscribe$ = new Subject<void>();
-  
+
   ngOnInit() {
     this.store.select(selectIsLoading).subscribe((isLoading) => {
       this.isLoading.set(isLoading);
@@ -47,7 +45,9 @@ export class FavoritesComponent implements OnInit, OnDestroy {
         this.store.dispatch(setLoading({ isLoading: true }));
         this.store.dispatch(fetchFavoriteCitiesWeather({ cities }));
       });
-    this.favoriteCitiesWeather = this.store.select(selectFavoriteCitiesWeather);
+    this.favoriteCitiesWeather = this.store.select(
+      selectFavoriteCitiesWithIndicator
+    );
   }
 
   ngOnDestroy(): void {

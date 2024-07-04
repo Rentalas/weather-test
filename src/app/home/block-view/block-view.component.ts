@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { DailyWeather } from '../../abstractions';
+import { DailyWeather, DailyWeatherForRender } from '../../abstractions';
 
 @Component({
   selector: 'app-block-view',
@@ -10,7 +10,7 @@ import { DailyWeather } from '../../abstractions';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlockViewComponent {
-  currentCityFiveDayDailyWeather = input.required<DailyWeather[]>();
+  currentCityFiveDayDailyWeather = input.required<DailyWeatherForRender[]>();
 
   setIconLink(icon: number): string {
     const weatherIconString = `${icon}`;
