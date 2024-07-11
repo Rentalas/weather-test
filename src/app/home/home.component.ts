@@ -85,16 +85,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   private setCurrentCity(): Observable<any> {
     return this.store.select(selectCurrentCityWeatherWithIndicator).pipe(
       tap((currentCityWeather) => {
-        console.log('1', currentCityWeather);
-
         if (currentCityWeather) return;
-        console.log('2', currentCityWeather);
-
         this.getCurrentCity();
       }),
       tap((currentCityWeather) => {
-        console.log(3);
-
         this.currentCityWeather.set(currentCityWeather);
       })
     );

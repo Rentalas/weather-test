@@ -13,7 +13,6 @@ export class CityApiService {
   private http = inject(HttpClient);
 
   getCitiesByPrefix(prefix: string): Observable<CityModel[]> {
-    return of(MOCK_DATA);
     return this.http
       .get<CityRs[]>('./locations/v1/cities/autocomplete', {
         params: { q: prefix },
@@ -27,7 +26,7 @@ export class CityApiService {
 
   getCityByPosition(latitude: number, longitude: number): Observable<City> {
     const positionString = `${latitude},${longitude}`;
-    return of(new CityModel(kyivByPosition.LocalizedName, kyivByPosition.Key));
+
     return this.http
       .get<CityRs>('./locations/v1/cities/geoposition/search', {
         params: { q: positionString },

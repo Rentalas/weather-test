@@ -11,7 +11,6 @@ import { WeatherApiService } from './weather-api.service';
 })
 export class WeatherService {
   private weatherApiService = inject(WeatherApiService);
-  private store = inject(Store);
 
   getCitiesWeather(cities: City[]): Observable<CityWeatherModel[]> {
     if (!cities.length) {
